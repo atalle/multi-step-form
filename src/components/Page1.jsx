@@ -4,7 +4,7 @@ export default function Page1(props) {
   const { orderData, setOrderData } = props
 
   function handleChange(event) {
-    const {name, value} = event.target;
+    const {name, value} = event.target
     setOrderData((prevData) => ({ ...prevData, [name]: value,}))
   }
 

@@ -205,9 +205,9 @@
   cursor: pointer;
 }
 
-.selected-card {
+.selected--card {
   border: 1px solid var(--purplish-blue);
-  background-color: rgba(90, 103, 216, 0.05); 
+  background-color: rgba(90, 103, 216, 0.1); 
 }
 
 /* Toggle */
@@ -215,26 +215,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin: 40px 0;
   padding: 10px;
   background-color: var(--alabaster);
 }
 
 .toggle {
+  display: flex;
   background-color: var(--marine-blue);
-  margin: 0 20px;
   width: 60px;
   height: 30px;
   border-radius: 1000px;
 }
+.toggle:hover {
+  cursor: pointer;
+}
+.toggle-dot {
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  border-radius: 100px;
+  margin: 5px;
+  padding: 0 10px;
+  transition: transform 0.2s;
+}
+.toggle-dot-right {
+  transform: translateX(150%);
+}
 
 .toggle--label {
+  padding: 0 20px;
   color: var(--cool-gray);
-  font-size: .9rem;
 }
 .toggle--selected {
   color: var(--marine-blue);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* Responsive */
@@ -245,7 +260,6 @@
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    margin: 0;
     padding: 0;
     border-radius: 0;
     background-color: transparent;
@@ -284,6 +298,20 @@
   .page--title {
     font-size: 2rem;
     padding-bottom: 20px;
+  }
+
+  .card-group {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .plan--card {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 100px;
+  }
+  .card--content {
+    padding-left: 20px;
   }
 }
 
