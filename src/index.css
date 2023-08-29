@@ -183,7 +183,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
+  height: auto;
   padding: 20px;
   border: 1px solid var(--light-gray);
   border-radius: 10px;
@@ -191,13 +191,14 @@
 .plan--card-name {
   color: var(--marine-blue);
   font-size: 1.2rem;
-  padding-bottom: 5px;
+  padding-bottom: .5rem;
 }
 .plan--card-price {
   color: var(--cool-gray);
 }
 .plan--card-icon {
   width: 50px;
+  margin-bottom: 60px;
 }
 
 .plan--card:hover {
@@ -208,6 +209,12 @@
 .selected--card {
   border: 1px solid var(--purplish-blue);
   background-color: rgba(90, 103, 216, 0.1); 
+}
+
+.plan--annual-text {
+  font-size: .9rem;
+  padding-top: .5rem;
+  color: var(--marine-blue)
 }
 
 /* Toggle */
@@ -258,9 +265,9 @@
   .app-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     width: 100vw;
     padding: 0;
+    margin: 0;
     border-radius: 0;
     background-color: transparent;
     position: relative;
@@ -308,10 +315,13 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    height: 100px;
+    height: auto;
   }
   .card--content {
     padding-left: 20px;
+  }
+  .plan--card-icon {
+    margin-bottom: 0;
   }
 }
 

@@ -13,12 +13,12 @@ export default function Page2(props) {
   const { orderData, setOrderData } = props
 
   const [selectedPlan, setSelectedPlan] = useState(null)
-  const [isAnnualBilling, setIsAnnualBilling] = useState(orderData.isAnnualBilling)
+  const [isAnnualBilling, setIsAnnualBilling] = useState(false)
 
   const planOptions = [
-    { id: 1, name: 'Arcade', price: 9},
-    { id: 2, name: 'Advanced', price: 12},
-    { id: 3, name: 'Pro', price: 15},
+    { id: 1, name: 'Arcade', price: 9, annualPrice: 90},
+    { id: 2, name: 'Advanced', price: 12, annualPrice: 120},
+    { id: 3, name: 'Pro', price: 15, annualPrice: 150},
   ]
 
   function handleCardClick(plan) {
@@ -26,7 +26,7 @@ export default function Page2(props) {
     setOrderData((prevData) => ({
       ...prevData,
       plan: plan.name,
-      planPrice: plan.price
+      planPrice: isAnnualBilling ? plan.annualPrice : plan.price
     }))
   }
 
@@ -34,14 +34,16 @@ export default function Page2(props) {
     setIsAnnualBilling(!isAnnualBilling)
     setOrderData((prevData) => ({
       ...prevData,
-      isAnnualBilling: isAnnualBilling 
+      isAnnualBilling: isAnnualBilling,
+      planPrice: isAnnualBilling
+        ? planOptions.find((plan) => plan.id === selectedPlan).price 
+        : planOptions.find((plan) => plan.id === selectedPlan).annualPrice
     }))
   }
 
   return (
     <main className='plan-container'>
 
-      {/* DYNAMICALLY RENDER PRICE CHANGE WHEN ANNUAL BILLING IS TRUE! */}
       <div className="card-group">
         {planOptions.map(plan => (
           <div 
@@ -52,7 +54,13 @@ export default function Page2(props) {
             <img src={iconMap[plan.name]} className="plan--card-icon" />
             <div className="card--content">
               <h3 className='plan--card-name'>{plan.name}</h3>
-              <p className='plan--card-price'>${plan.price}/mo</p>
+              <p className='plan--card-price'>
+                ${isAnnualBilling ? plan.annualPrice : plan.price}/ 
+                {isAnnualBilling ? 'yr' : 'mo'}
+              </p>
+              {isAnnualBilling && (
+                <p className="plan--annual-text">2 months free</p>
+              )}
             </div>
           </div>
         ))}

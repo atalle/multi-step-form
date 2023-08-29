@@ -8,8 +8,7 @@ export default function Form(props) {
     email: '',
     phone: '',
     plan: '',
-    planPrice: '',
-    isAnnualBilling: false
+    planPrice: ''
   })
 
   const stepProps = {
