@@ -3,6 +3,8 @@ import Navbar from './components/Navbar'
 import Form from './components/Form'
 import Page1 from './components/Page1'
 import Page2 from './components/Page2'
+import Page3 from './components/Page3'
+import Page4 from './components/Page4'
 
 
 export default function App() { 
@@ -29,6 +31,7 @@ export default function App() {
       label: 'Add-ons',
       title: 'Pick add-ons',
       description: 'Add-ons help enhance your gaming experience.',
+      component: <Page3 />
     },
     {
       id: 3,
@@ -36,10 +39,11 @@ export default function App() {
       label: 'Summary',
       title: 'Finishing up',
       description: 'Double-check everything looks OK before confirming.',
+      component: <Page4 />
     }
   ]
 
-  const [currentPage, setCurrentPage] =  useState(formContent[0])
+  const [currentPage, setCurrentPage] = useState(formContent[0])
 
   return (
     <div className='app-container'>
