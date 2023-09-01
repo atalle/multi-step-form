@@ -31,14 +31,21 @@ export default function Page2(props) {
   }
 
   function toggleBillingCycle() {
-    setIsAnnualBilling(!isAnnualBilling)
+    setIsAnnualBilling(!isAnnualBilling);
+    
+    // Calculate the new price based on the selected plan and the billing cycle
+    let newPrice = 0; // Default value
+    
+    if (selectedPlan) {
+      const selectedPlanObject = planOptions.find((plan) => plan.id === selectedPlan);
+      newPrice = isAnnualBilling ? selectedPlanObject.price : selectedPlanObject.annualPrice;
+    }
+  
     setOrderData((prevData) => ({
       ...prevData,
       isAnnualBilling: isAnnualBilling,
-      planPrice: isAnnualBilling
-        ? planOptions.find((plan) => plan.id === selectedPlan).price 
-        : planOptions.find((plan) => plan.id === selectedPlan).annualPrice
-    }))
+      planPrice: newPrice,
+    }));
   }
 
   return (

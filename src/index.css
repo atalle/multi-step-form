@@ -190,7 +190,7 @@
 }
 .plan--card-name {
   color: var(--marine-blue);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding-bottom: .5rem;
 }
 .plan--card-price {
@@ -207,7 +207,7 @@
 }
 
 .selected--card {
-  border: 1px solid var(--purplish-blue);
+  border: 1px solid var(--purplish-blue) !important;
   background-color: rgba(90, 103, 216, 0.1); 
 }
 
@@ -257,6 +257,60 @@
 .toggle--selected {
   color: var(--marine-blue);
   font-weight: 500;
+}
+
+/* Page 3: Add Ons */
+.addOn--card {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid var(--light-gray);
+  border-radius: 10px;
+}
+
+.addOn--checkbox {
+  appearance: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  margin: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 20px;
+}
+.addOn--checkbox:checked {
+  background-color: var(--purplish-blue); 
+  border-color: var(--purplish-blue)
+}
+.addOn--checkbox:checked::before {
+  content: '\2713'; /* Checkmark symbol */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.addOn--card-content {
+  display: flex;
+  flex-direction: column;
+}
+.addOn--title {
+  color: var(--marine-blue);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding-bottom: .5rem;
+}
+.addOn--description {
+  color: var(--cool-gray)
+}
+.addOn--price {
+  color: var(--purplish-blue);
 }
 
 /* Responsive */

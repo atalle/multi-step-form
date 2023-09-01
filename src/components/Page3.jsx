@@ -1,45 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 export default function Page3(props) {
-    const { orderData, setOrderData } = props
+  const { orderData, setOrderData } = props;
 
-    const addOnOptions = [
-        { id: 4, name: 'Online service', description: 'Access to multi-player games', price: 1, annualPrice: 10 },
-        { id: 5, name: 'Larger storage', description: 'Extra 1TB of cloud save', price: 2, annualPrice: 20 },
-        { id: 6, name: 'Customizable profile', description: 'Custom theme on your profile', price: 2, annualPrice: 20 },
-    ]
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
 
-   function handleCheckboxChange(option) {
-        // Check if the option is included in the orderData.selectedAddOns array
-        // If yes, remove it from the array; otheriwse add it to the array 
-        const updatedSelectedAddOns = orderData.selectedAddOns.includes(option)
-            ? orderData.selectedAddOns.filter(item => item.id !== option.id)
-            : [...orderData.selectedAddOns, option]
+  const addOnOptions = [
+    { id: 4, name: 'Online service', description: 'Access to multi-player games', price: 1, annualPrice: 10 },
+    { id: 5, name: 'Larger storage', description: 'Extra 1TB of cloud save', price: 2, annualPrice: 20 },
+    { id: 6, name: 'Customizable profile', description: 'Custom theme on your profile', price: 2, annualPrice: 20 },
+  ];
 
-        setOrderData(prevOrderData => ({
-            ...prevOrderData,
-            selectedAddOns: updatedSelectedAddOns
-        }))
+  function handleCheckboxChange(option) {
+    const updatedSelectedAddOns = selectedAddOns.includes(option)
+      ? selectedAddOns.filter(item => item.id !== option.id)
+      : [...selectedAddOns, option];
 
-        // BUG! Checkboxes are getting added muliple times to orderData ...
-   }
+    setSelectedAddOns(updatedSelectedAddOns);
 
-    return (
-        <main className="addOns-container">
-            {addOnOptions.map(option => (
-                <div key={option.id}>
-                    <input 
-                        type="checkbox"
-                        id={`option${option.id}`}
-                        name={`option${option.id}`}
-                        value={`option${option.id}`}
-                        className="checkbox--icon"
-                        checked={orderData.selectedAddOns.some(item => item.id === option.id)}
-                        onChange={() => handleCheckboxChange(option)}
-                    />
-                    <label htmlFor={`option${option.id}`} className="checkbox--label">{option.name}</label>
-                </div>
-            ))}
-        </main>
-    )
+    setOrderData(prevOrderData => ({
+      ...prevOrderData,
+      selectedAddOns: updatedSelectedAddOns
+    }));
+  }
+
+  return (
+    <main className="addOns-container">
+      {addOnOptions.map(option => (
+        <div key={option.id} className={`addOn--card ${selectedAddOns.some(item => item.id === option.id) ? 'selected--card' : ''}`}>
+          <input 
+            type="checkbox"
+            id={`option${option.id}`}
+            name={`option${option.id}`}
+            value={`option${option.id}`}
+            className="addOn--checkbox"
+            checked={selectedAddOns.some(item => item.id === option.id)}
+            onChange={() => handleCheckboxChange(option)}
+          />
+          <div className="addOn--card-content">
+            <label htmlFor={`option${option.id}`} className="checkbox--label addOn--title">{option.name}</label>
+            <p className="addOn--description">{option.description}</p>
+          </div>
+          <p className="addOn--price">${option.price}/mo</p>
+        </div>
+      ))}
+    </main>
+  );
 }
