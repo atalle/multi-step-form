@@ -12,18 +12,21 @@ export default function Page3(props) {
   ];
 
   function handleCheckboxChange(option) {
-    const updatedSelectedAddOns = selectedAddOns.includes(option)
-      ? selectedAddOns.filter(item => item.id !== option.id)
-      : [...selectedAddOns, option];
-
-    setSelectedAddOns(updatedSelectedAddOns);
+    setSelectedAddOns(prevSelectedAddOns => {
+      if (prevSelectedAddOns.includes(option)) {
+        return prevSelectedAddOns.filter(item => item.id !== option.id)
+      } else {
+        return [...prevSelectedAddOns, option]
+      }
+    }) 
 
     setOrderData(prevOrderData => ({
       ...prevOrderData,
-      selectedAddOns: updatedSelectedAddOns
+      selectedAddOns: selectedAddOns
     }));
-  }
+  };
 
+  console.log(orderData)
   return (
     <main className="addOns-container">
       {addOnOptions.map(option => (
