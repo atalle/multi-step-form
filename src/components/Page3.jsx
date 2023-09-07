@@ -11,7 +11,7 @@ export default function Page3(props) {
     { id: 3, name: 'Customizable profile', description: 'Custom theme on your profile', price: 2, annualPrice: 20 },
   ];
 
-  function handleCheckboxChange(option) {
+  function handleCheckboxChange() {
 
   };
 
