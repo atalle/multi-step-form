@@ -7,8 +7,9 @@ export default function Form(props) {
     name: '',
     email: '',
     phone: '',
-    plan: '',
-    planPrice: '',
+    plan: null,
+    planPrice: null,
+    isAnnualBilling: false,
     selectedAddOns: [],
   })
 
